@@ -748,241 +748,105 @@ body {
 
 /* ===== AUTOMATION SECTION ===== */
 
-/* Automation Journey Visual - Complex Winding Path */
+/* Automation Journey - Clean Simple Design */
 .automation-journey {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 1.5rem;
-    padding: 2.5rem;
+    padding: 3rem 2rem;
     margin-bottom: 3rem;
-    overflow: hidden;
 }
 
 .journey-title {
     text-align: center;
     font-size: 1.5rem;
     font-weight: 700;
-    margin-bottom: 2.5rem;
+    margin-bottom: 3rem;
     color: #fb923c;
 }
 
-.journey-container {
+/* Flow Container */
+.journey-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+}
+
+/* Flow Steps */
+.flow-step {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 1rem;
+    padding: 0 1rem;
 }
 
-/* Journey Rows */
-.journey-row {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 0.5rem;
-}
-
-.journey-row.row-2 {
-    justify-content: flex-end;
-    flex-direction: row-reverse;
-    padding-left: 2rem;
-}
-
-.journey-row.row-3 {
-    padding-left: 4rem;
-}
-
-/* Journey Nodes */
-.journey-node {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    position: relative;
-    flex-shrink: 0;
-}
-
-.node-icon {
-    width: 3.5rem;
-    height: 3.5rem;
+.step-icon {
+    width: 4.5rem;
+    height: 4.5rem;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    transition: all 0.3s;
-    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
-.node-icon svg {
+.step-icon svg {
     color: white;
 }
 
-.node-icon.node-start {
-    background: linear-gradient(135deg, rgba(251, 146, 60, 0.3), rgba(168, 85, 247, 0.3));
-    border-color: #fb923c;
+.step-icon.gradient-orange { background: linear-gradient(135deg, #fb923c, #ea580c); }
+.step-icon.gradient-purple { background: linear-gradient(135deg, #a855f7, #7c3aed); }
+.step-icon.gradient-blue { background: linear-gradient(135deg, #60a5fa, #3b82f6); }
+.step-icon.gradient-green { background: linear-gradient(135deg, #4ade80, #22c55e); }
+
+.flow-step:hover .step-icon {
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: 0 8px 30px rgba(251, 146, 60, 0.3);
 }
 
-.node-icon.node-success {
-    background: linear-gradient(135deg, #4ade80, #22c55e);
-    border: none;
-    animation: successPulse 2s ease-in-out infinite;
-}
-
-@keyframes successPulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.4); }
-    50% { box-shadow: 0 0 0 15px rgba(74, 222, 128, 0); }
-}
-
-.node-icon.gradient-orange { background: linear-gradient(135deg, #fb923c, #ea580c); border: none; }
-.node-icon.gradient-purple { background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; }
-.node-icon.gradient-blue { background: linear-gradient(135deg, #60a5fa, #3b82f6); border: none; }
-.node-icon.gradient-green { background: linear-gradient(135deg, #4ade80, #22c55e); border: none; }
-.node-icon.gradient-yellow { background: linear-gradient(135deg, #facc15, #eab308); border: none; }
-
-.journey-node:hover .node-icon {
-    transform: scale(1.15) rotate(5deg);
-}
-
-.node-label {
-    font-size: 0.7rem;
+.step-label {
+    font-size: 0.9rem;
     font-weight: 600;
-    text-align: center;
     color: #d1d5db;
-    line-height: 1.2;
+    text-align: center;
 }
 
-.node-number {
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    width: 1.25rem;
-    height: 1.25rem;
-    background: linear-gradient(135deg, #fb923c, #a855f7);
-    border-radius: 50%;
-    font-size: 0.6rem;
-    font-weight: 700;
+/* Flow Connector */
+.flow-connector {
     display: flex;
     align-items: center;
-    justify-content: center;
-    color: white;
+    padding: 0 0.5rem;
 }
 
-/* Path Segments */
-.path-segment {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    flex-shrink: 0;
-}
-
-.path-segment.path-horizontal {
-    width: 60px;
-    justify-content: space-around;
-}
-
-.path-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #fb923c, #a855f7);
-    animation: dotPulse 1.5s ease-in-out infinite;
-}
-
-.path-dot:nth-child(2) { animation-delay: 0.2s; }
-.path-dot:nth-child(3) { animation-delay: 0.4s; }
-
-@keyframes dotPulse {
-    0%, 100% { opacity: 0.3; transform: scale(0.8); }
-    50% { opacity: 1; transform: scale(1.2); }
-}
-
-.path-segment.reverse .path-dot {
-    animation-direction: reverse;
-}
-
-.path-segment.path-curve-down,
-.path-segment.path-curve-down-left {
+.connector-line {
     width: 40px;
-    height: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, rgba(251, 146, 60, 0.5), rgba(168, 85, 247, 0.5));
+    border-radius: 2px;
 }
 
-.path-segment.path-curve-down svg,
-.path-segment.path-curve-down-left svg {
-    width: 100%;
-    height: 100%;
+.connector-arrow {
+    font-size: 1.5rem;
+    color: #fb923c;
+    margin-left: -5px;
+    animation: arrowPulse 1.5s ease-in-out infinite;
 }
 
-.animated-dash {
-    animation: dashFlow 2s linear infinite;
-}
-
-@keyframes dashFlow {
-    from { stroke-dashoffset: 24; }
-    to { stroke-dashoffset: 0; }
-}
-
-.path-segment.final {
-    position: relative;
-}
-
-.path-arrow {
-    font-size: 1.25rem;
-    color: #4ade80;
-    animation: arrowBounce 1s ease-in-out infinite;
-}
-
-@keyframes arrowBounce {
-    0%, 100% { transform: translateX(0); }
-    50% { transform: translateX(5px); }
-}
-
-/* Final Node Decorations */
-.node-final {
-    position: relative;
-}
-
-.success-flag {
-    position: absolute;
-    top: -1.5rem;
-    right: -0.5rem;
-    font-size: 1.25rem;
-    animation: flagWave 1s ease-in-out infinite;
-}
-
-@keyframes flagWave {
-    0%, 100% { transform: rotate(-10deg); }
-    50% { transform: rotate(10deg); }
-}
-
-.success-sparkles {
-    position: absolute;
-    top: -1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 0.5rem;
-}
-
-.success-sparkles span {
-    font-size: 0.75rem;
-    animation: sparkle 1.5s ease-in-out infinite;
-}
-
-.success-sparkles span:nth-child(1) { animation-delay: 0s; }
-.success-sparkles span:nth-child(2) { animation-delay: 0.3s; }
-.success-sparkles span:nth-child(3) { animation-delay: 0.6s; }
-
-@keyframes sparkle {
-    0%, 100% { opacity: 0; transform: scale(0.5) translateY(0); }
-    50% { opacity: 1; transform: scale(1) translateY(-10px); }
+@keyframes arrowPulse {
+    0%, 100% { opacity: 0.5; transform: translateX(0); }
+    50% { opacity: 1; transform: translateX(3px); }
 }
 
 /* Journey Stats */
 .journey-stats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    margin-top: 2.5rem;
+    gap: 1.5rem;
+    margin-top: 3rem;
     padding-top: 2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -995,13 +859,8 @@ body {
     text-align: center;
 }
 
-.stat-icon {
-    font-size: 1.5rem;
-    margin-bottom: 0.25rem;
-}
-
 .stat-value {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 800;
     background: linear-gradient(135deg, #fb923c, #a855f7);
     -webkit-background-clip: text;
@@ -1010,7 +869,7 @@ body {
 }
 
 .stat-label {
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     color: #9ca3af;
 }
 
@@ -1023,144 +882,107 @@ body {
     margin-bottom: 2rem;
 }
 
-/* Mobile Responsiveness for Journey */
-@media (max-width: 900px) {
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
     .automation-journey {
-        padding: 1.5rem 1rem;
+        padding: 2rem 1.5rem;
     }
 
     .journey-title {
         font-size: 1.25rem;
-        margin-bottom: 1.5rem;
+        margin-bottom: 2rem;
     }
 
-    .journey-row {
-        flex-wrap: wrap;
-        justify-content: center !important;
-        gap: 0.75rem;
+    .journey-flow {
+        gap: 1rem;
     }
 
-    .journey-row.row-2,
-    .journey-row.row-3 {
-        padding-left: 0;
-        flex-direction: row;
+    .flow-step {
+        padding: 0.5rem;
     }
 
-    .path-segment.path-horizontal {
-        width: 40px;
+    .step-icon {
+        width: 3.5rem;
+        height: 3.5rem;
     }
 
-    .path-segment.path-curve-down,
-    .path-segment.path-curve-down-left {
-        display: none;
-    }
-
-    .node-icon {
-        width: 3rem;
-        height: 3rem;
-    }
-
-    .node-icon svg {
+    .step-icon svg {
         width: 20px;
         height: 20px;
     }
 
-    .node-label {
-        font-size: 0.6rem;
+    .step-label {
+        font-size: 0.75rem;
     }
 
-    .node-number {
-        width: 1rem;
-        height: 1rem;
-        font-size: 0.5rem;
+    .flow-connector {
+        padding: 0;
+    }
+
+    .connector-line {
+        width: 20px;
+    }
+
+    .connector-arrow {
+        font-size: 1.25rem;
     }
 
     .journey-stats {
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
-    }
-}
-
-@media (max-width: 600px) {
-    .journey-container {
-        gap: 1.5rem;
-    }
-
-    .journey-row {
-        gap: 0.5rem;
-    }
-
-    .path-segment.path-horizontal {
-        width: 25px;
-    }
-
-    .path-dot {
-        width: 4px;
-        height: 4px;
-    }
-
-    .node-icon {
-        width: 2.5rem;
-        height: 2.5rem;
-    }
-
-    .node-icon svg {
-        width: 16px;
-        height: 16px;
-    }
-
-    .node-label {
-        font-size: 0.55rem;
-    }
-
-    .success-flag {
-        font-size: 1rem;
-        top: -1rem;
-    }
-
-    .success-sparkles {
-        display: none;
-    }
-
-    .stat-icon {
-        font-size: 1.25rem;
+        margin-top: 2rem;
     }
 
     .stat-value {
-        font-size: 1.25rem;
+        font-size: 1.5rem;
     }
 
     .stat-label {
-        font-size: 0.65rem;
+        font-size: 0.75rem;
     }
 }
 
-@media (max-width: 400px) {
-    .journey-row {
-        gap: 0.25rem;
+@media (max-width: 500px) {
+    .automation-journey {
+        padding: 1.5rem 1rem;
     }
 
-    .path-segment.path-horizontal {
+    .journey-flow {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .flow-step {
+        flex-direction: row;
+        width: 100%;
+        justify-content: flex-start;
+        gap: 1rem;
+        padding: 0.75rem 1rem;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 1rem;
+    }
+
+    .step-icon {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .step-label {
+        font-size: 0.9rem;
+    }
+
+    .flow-connector {
+        transform: rotate(90deg);
+        padding: 0;
+        height: 25px;
+    }
+
+    .connector-line {
         width: 15px;
     }
 
-    .node-icon {
-        width: 2rem;
-        height: 2rem;
-    }
-
-    .node-icon svg {
-        width: 14px;
-        height: 14px;
-    }
-
-    .node-label {
-        display: none;
-    }
-
-    .node-number {
-        top: -5px;
-        right: -5px;
+    .connector-arrow {
+        font-size: 1rem;
     }
 }
 
