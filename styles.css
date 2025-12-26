@@ -755,6 +755,7 @@ body {
     border-radius: 1.5rem;
     padding: 3rem 2rem;
     margin-bottom: 3rem;
+    overflow: hidden;
 }
 
 .journey-title {
@@ -771,7 +772,6 @@ body {
     align-items: center;
     justify-content: center;
     gap: 0;
-    flex-wrap: wrap;
 }
 
 /* Flow Steps */
@@ -780,18 +780,21 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-    padding: 0 1rem;
+    padding: 0 0.5rem;
+    flex-shrink: 1;
+    min-width: 0;
 }
 
 .step-icon {
-    width: 4.5rem;
-    height: 4.5rem;
+    width: 4rem;
+    height: 4rem;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
 }
 
 .step-icon svg {
@@ -809,17 +812,19 @@ body {
 }
 
 .step-label {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 600;
     color: #d1d5db;
     text-align: center;
+    white-space: nowrap;
 }
 
 /* Flow Connector */
 .flow-connector {
     display: flex;
     align-items: center;
-    padding: 0 0.5rem;
+    flex-shrink: 1;
+    min-width: 30px;
 }
 
 .connector-line {
@@ -827,6 +832,8 @@ body {
     height: 3px;
     background: linear-gradient(90deg, rgba(251, 146, 60, 0.5), rgba(168, 85, 247, 0.5));
     border-radius: 2px;
+    flex-shrink: 1;
+    min-width: 20px;
 }
 
 .connector-arrow {
@@ -834,6 +841,7 @@ body {
     color: #fb923c;
     margin-left: -5px;
     animation: arrowPulse 1.5s ease-in-out infinite;
+    flex-shrink: 0;
 }
 
 @keyframes arrowPulse {
@@ -885,7 +893,7 @@ body {
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
     .automation-journey {
-        padding: 2rem 1.5rem;
+        padding: 2rem 1rem;
     }
 
     .journey-title {
@@ -893,38 +901,27 @@ body {
         margin-bottom: 2rem;
     }
 
-    .journey-flow {
-        gap: 1rem;
-    }
-
-    .flow-step {
-        padding: 0.5rem;
-    }
-
     .step-icon {
-        width: 3.5rem;
-        height: 3.5rem;
+        width: 3rem;
+        height: 3rem;
     }
 
     .step-icon svg {
-        width: 20px;
-        height: 20px;
+        width: 18px;
+        height: 18px;
     }
 
     .step-label {
-        font-size: 0.75rem;
-    }
-
-    .flow-connector {
-        padding: 0;
+        font-size: 0.7rem;
     }
 
     .connector-line {
-        width: 20px;
+        width: 25px;
+        min-width: 15px;
     }
 
     .connector-arrow {
-        font-size: 1.25rem;
+        font-size: 1rem;
     }
 
     .journey-stats {
@@ -942,47 +939,37 @@ body {
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 480px) {
     .automation-journey {
         padding: 1.5rem 1rem;
     }
 
     .journey-flow {
-        flex-direction: column;
-        gap: 0.5rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
     }
 
     .flow-step {
-        flex-direction: row;
-        width: 100%;
-        justify-content: flex-start;
-        gap: 1rem;
-        padding: 0.75rem 1rem;
-        background: rgba(255, 255, 255, 0.03);
-        border-radius: 1rem;
-    }
-
-    .step-icon {
-        width: 3rem;
-        height: 3rem;
-    }
-
-    .step-label {
-        font-size: 0.9rem;
+        flex: 0 0 auto;
     }
 
     .flow-connector {
-        transform: rotate(90deg);
-        padding: 0;
-        height: 25px;
+        display: none;
     }
 
-    .connector-line {
-        width: 15px;
+    .step-icon {
+        width: 3.5rem;
+        height: 3.5rem;
     }
 
-    .connector-arrow {
-        font-size: 1rem;
+    .step-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .step-label {
+        font-size: 0.75rem;
     }
 }
 
