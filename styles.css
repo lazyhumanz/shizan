@@ -747,6 +747,294 @@ body {
 }
 
 /* ===== AUTOMATION SECTION ===== */
+
+/* Automation Journey Visual */
+.automation-journey {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    overflow: hidden;
+}
+
+.journey-title {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    color: #fb923c;
+}
+
+.journey-roadmap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+    overflow-x: auto;
+    gap: 0;
+}
+
+.journey-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    position: relative;
+    flex-shrink: 0;
+    z-index: 2;
+}
+
+.node-icon {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s;
+    animation: nodeFloat 3s ease-in-out infinite;
+}
+
+.journey-node:nth-child(2) .node-icon { animation-delay: 0.2s; }
+.journey-node:nth-child(4) .node-icon { animation-delay: 0.4s; }
+.journey-node:nth-child(6) .node-icon { animation-delay: 0.6s; }
+.journey-node:nth-child(8) .node-icon { animation-delay: 0.8s; }
+.journey-node:nth-child(10) .node-icon { animation-delay: 1s; }
+
+@keyframes nodeFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.node-icon svg {
+    color: white;
+}
+
+.node-icon.gradient-orange,
+.node-icon.gradient-purple,
+.node-icon.gradient-blue,
+.node-icon.gradient-green {
+    border: none;
+}
+
+.journey-node:hover .node-icon {
+    transform: scale(1.15);
+    box-shadow: 0 0 30px rgba(251, 146, 60, 0.4);
+}
+
+.node-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+    color: #d1d5db;
+    line-height: 1.3;
+}
+
+.node-tooltip {
+    position: absolute;
+    bottom: -2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 0.7rem;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+.journey-node:hover .node-tooltip {
+    opacity: 1;
+}
+
+.node-flag {
+    position: absolute;
+    top: -1.5rem;
+    right: -0.5rem;
+    animation: flagWave 2s ease-in-out infinite;
+}
+
+@keyframes flagWave {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+}
+
+/* Journey Path */
+.journey-path {
+    flex: 1;
+    min-width: 60px;
+    max-width: 120px;
+    height: 50px;
+    position: relative;
+    z-index: 1;
+}
+
+.path-line {
+    width: 100%;
+    height: 100%;
+}
+
+.animated-path {
+    animation: dashMove 2s linear infinite;
+}
+
+@keyframes dashMove {
+    from { stroke-dashoffset: 24; }
+    to { stroke-dashoffset: 0; }
+}
+
+/* Journey Stats */
+.journey-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.journey-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    text-align: center;
+}
+
+.stat-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #fb923c, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+/* Projects Title */
+.automation-projects-title {
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #d1d5db;
+    margin-bottom: 2rem;
+}
+
+/* Mobile Responsiveness for Journey */
+@media (max-width: 768px) {
+    .automation-journey {
+        padding: 1.5rem 1rem;
+    }
+
+    .journey-title {
+        font-size: 1.25rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .journey-roadmap {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .journey-path {
+        width: 50px;
+        height: 40px;
+        min-width: auto;
+        max-width: none;
+        transform: rotate(90deg);
+    }
+
+    .node-icon {
+        width: 3.5rem;
+        height: 3.5rem;
+    }
+
+    .node-icon svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .node-label {
+        font-size: 0.75rem;
+    }
+
+    .node-tooltip {
+        display: none;
+    }
+
+    .node-flag {
+        top: -1rem;
+        right: -1rem;
+    }
+
+    .node-flag svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .journey-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+    }
+
+    .stat-icon {
+        font-size: 1.25rem;
+    }
+
+    .stat-value {
+        font-size: 1.25rem;
+    }
+
+    .stat-label {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .automation-journey {
+        padding: 1rem;
+    }
+
+    .journey-title {
+        font-size: 1.1rem;
+    }
+
+    .node-icon {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .node-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .journey-path {
+        height: 30px;
+    }
+
+    .stat-value {
+        font-size: 1.1rem;
+    }
+}
+
 .automation-grid {
     display: grid;
     grid-template-columns: 1fr;
