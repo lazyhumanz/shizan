@@ -1074,6 +1074,116 @@ body {
     font-size: 0.75rem;
 }
 
+/* ===== CERTIFICATIONS SECTION ===== */
+.certifications-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .certifications-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .certifications-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.certification-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.certification-card:hover {
+    transform: scale(1.02) translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.certification-badge {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.certification-badge svg {
+    color: white;
+}
+
+.certification-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.certification-content h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.certification-content .issuer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #fb923c;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.certification-content .issued-date {
+    color: #9ca3af;
+    font-size: 0.8rem;
+    margin-bottom: 0.75rem;
+}
+
+.certification-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.skill-tag {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    color: #d1d5db;
+    white-space: nowrap;
+}
+
+.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    margin-top: auto;
+    width: fit-content;
+}
+
+.btn-sm svg {
+    width: 14px;
+    height: 14px;
+}
+
 /* ===== CONTACT SECTION ===== */
 .contact-form {
     max-width: 800px;
@@ -1474,6 +1584,39 @@ body {
     }
 
     .education-card .institution {
+        font-size: 0.75rem;
+    }
+
+    /* Certifications */
+    .certification-card {
+        padding: 1rem;
+    }
+
+    .certification-badge {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .certification-badge svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .certification-content h3 {
+        font-size: 0.95rem;
+    }
+
+    .certification-content .issuer {
+        font-size: 0.8rem;
+    }
+
+    .skill-tag {
+        font-size: 0.65rem;
+        padding: 0.2rem 0.5rem;
+    }
+
+    .btn-sm {
+        padding: 0.4rem 0.75rem;
         font-size: 0.75rem;
     }
 
